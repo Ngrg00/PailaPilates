@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Paila Pilates admin</title>
+<style>
+  :root { --bg: #F4EEE3; --surface: #FAF6EE; --ink: #33291F; --muted: #6E6155; --line: #DDD3C2; color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.5 "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font: 400 2.2rem/1.1 Georgia, serif; margin: 0 0 0.5rem; }
+  p { color: var(--muted); margin: 0 0 1.5rem; }
+  .bar { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; }
+  input { font: inherit; padding: 0.6rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); min-width: 16rem; }
+  button { font: inherit; padding: 0.6rem 1.2rem; border: 1px solid var(--ink); border-radius: 999px; background: var(--ink); color: var(--bg); cursor: pointer; }
+  button.ghost { background: transparent; color: var(--ink); border-color: var(--line); padding: 0.3rem 0.8rem; font-size: 0.9rem; }
+  button:focus-visible, input:focus-visible { outline: 2px solid #8A7156; outline-offset: 3px; }
+  .wrap { overflow-x: auto; border-top: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; min-width: 760px; }
+  th, td { text-align: left; padding: 0.75rem 0.5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 400; color: var(--muted); font-size: 0.9rem; }
+  .status-paid { color: #2F6B3A; }
+  .status-pending { color: #8A5A1B; }
+  .status-cancelled, .status-expired { color: var(--muted); }
+  .note { color: #9B2C2C; font-size: 0.9rem; }
+  #msg { min-height: 1.5rem; color: var(--ink); }
+  h2 { font: 400 1.5rem/1.2 Georgia, serif; margin: 2rem 0 0.25rem; }
+  select { font: inherit; padding: 0.6rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); min-width: 18rem; max-width: 100%; }
+  #cancelPanel { margin-bottom: 2rem; }
+  #cancelPanel input { min-width: 18rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Bookings</h1>
+  <p id="summary">Enter your admin token to see who has booked.</p>
+  <div class="bar">
+    <input id="token" type="password" placeholder="Admin token" autocomplete="off" aria-label="Admin token">
+    <button id="load" type="button">Load bookings</button>
+    <button id="hideOld" class="ghost" type="button" hidden>Hide cancelled and expired</button>
+  </div>
+  <p id="msg" role="status" aria-live="polite"></p>
+  <section id="cancelPanel" hidden>
+    <h2>Cancel a class</h2>
+    <p>Cancels the class for everyone booked, stops new bookings, and emails each customer.</p>
+    <div class="bar">
+      <select id="sessionPick" aria-label="Class to cancel"></select>
+      <input id="reason" type="text" maxlength="300" placeholder="Reason (optional, included in the email)" aria-label="Reason">
+      <button id="cancelClass" type="button">Cancel class</button>
+    </div>
+  </section>
+  <div class="wrap">
+    <table>
+      <thead><tr><th>Class</th><th>When</th><th>Spots</th><th>Customer</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</main>
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var tokenEl = $('#token');
+  var data = [], hideOld = false, tz;
+  try { tokenEl.value = sessionStorage.getItem('paila.admin') || ''; } catch (e) {}
+
+  function call(path, method, body) {
+    var headers = { Authorization: 'Bearer ' + tokenEl.value.trim() };
+    if (body) headers['Content-Type'] = 'application/json';
+    return fetch('/api/admin' + path, { method: method || 'GET', headers: headers, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || 'Request failed.'); return d; }); });
+  }
+  function cell(text, cls) { var td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; return td; }
+
+  function render() {
+    var body = $('#rows');
+    body.textContent = '';
+    data.filter(function (b) { return !hideOld || (b.status === 'paid' || b.status === 'pending'); }).forEach(function (b) {
+      var tr = document.createElement('tr');
+      var when = new Date(b.start).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: tz });
+      tr.appendChild(cell(b.cid));
+      tr.appendChild(cell(when));
+      tr.appendChild(cell(String(b.qty)));
+      var cust = cell(b.name + (b.email ? ' (' + b.email + ')' : ''));
+      tr.appendChild(cust);
+      tr.appendChild(cell(String(b.amount)));
+      var st = cell(b.status + (b.cancelledBy === 'studio' ? ' by studio' : '') + (b.ref ? ' ' + b.ref : ''), 'status-' + b.status);
+      if (b.discount > 0) { var of = document.createElement('div'); of.className = 'note'; of.style.color = '#6E6155'; of.textContent = 'First class offer applied'; st.appendChild(of); }
+      if (b.status === 'cancelled' && b.cancelledBy === 'studio' && b.wasPaid !== undefined) {
+        var ce = document.createElement('div'); ce.className = 'note'; ce.style.color = b.cancelEmailSent ? '#2F6B3A' : '#9B2C2C';
+        ce.textContent = b.cancelEmailSent ? 'Cancellation email sent' : 'Cancellation email not sent' + (b.cancelEmailError ? ': ' + b.cancelEmailError : '');
+        st.appendChild(ce);
+      }
+      if (b.status === 'paid') {
+        var em = document.createElement('div'); em.className = 'note'; em.style.color = b.emailSent ? '#2F6B3A' : '#9B2C2C';
+        em.textContent = b.emailSent ? 'Email sent' : 'Email not sent' + (b.emailError ? ': ' + b.emailError : '');
+        st.appendChild(em);
+      }
+      if (b.note) { var n = document.createElement('div'); n.className = 'note'; n.textContent = b.note; st.appendChild(n); }
+      tr.appendChild(st);
+      var act = document.createElement('td');
+      if (b.status === 'pending' || b.status === 'expired') {
+        var paid = document.createElement('button'); paid.className = 'ghost'; paid.textContent = 'Mark paid';
+        paid.addEventListener('click', function () { act2(b.id, 'paid'); });
+        act.appendChild(paid);
+      }
+      if (b.status === 'paid') {
+        var rs = document.createElement('button'); rs.className = 'ghost'; rs.textContent = b.emailSent ? 'Resend email' : 'Send email';
+        rs.addEventListener('click', function () { act2(b.id, 'resend'); });
+        act.appendChild(rs);
+        act.appendChild(document.createTextNode(' '));
+      }
+      if (b.status === 'cancelled' && b.cancelledBy === 'studio') {
+        var rc = document.createElement('button'); rc.className = 'ghost'; rc.textContent = b.cancelEmailSent ? 'Resend cancellation email' : 'Send cancellation email';
+        rc.addEventListener('click', function () { act2(b.id, 'resend'); });
+        act.appendChild(rc);
+      }
+      if (b.status !== 'cancelled') {
+        var c = document.createElement('button'); c.className = 'ghost'; c.textContent = 'Cancel';
+        c.addEventListener('click', function () {
+          if (!confirm('Cancel this booking? The customer will be emailed. Refunds are not handled here.')) return;
+          var why = prompt('Reason (optional, included in the email):');
+          if (why === null) return;
+          act2(b.id, 'cancel', { reason: why });
+        });
+        act.appendChild(document.createTextNode(' '));
+        act.appendChild(c);
+      }
+      tr.appendChild(act);
+      body.appendChild(tr);
+    });
+  }
+  function act2(id, what, body) {
+    call('/bookings/' + id + '/' + what, 'POST', body || {}).then(function (r) {
+      return load().then(function () {
+        if (what === 'resend') $('#msg').textContent = r.sent ? 'Email sent.' : 'Email not sent: ' + (r.error || 'unknown error');
+        if (what === 'cancel') $('#msg').textContent = r.emailed ? 'Booking cancelled and the customer was emailed.' : 'Booking cancelled. No email was sent (the booking was not active, or email is not set up).';
+      });
+    }).catch(function (e) { $('#msg').textContent = e.message; });
+  }
+  function load() {
+    $('#msg').textContent = '';
+    return call('/bookings').then(function (d) {
+      data = d.bookings;
+      tz = d.timezone;
+      try { sessionStorage.setItem('paila.admin', tokenEl.value.trim()); } catch (e) {}
+      $('#summary').textContent = d.bookings.length + ' bookings from ' + d.customers + ' customers.';
+      $('#hideOld').hidden = false;
+      render();
+      return loadSessions();
+    }).catch(function (e) { $('#msg').textContent = e.message; });
+  }
+  function loadSessions() {
+    return call('/sessions').then(function (d) {
+      var pick = $('#sessionPick');
+      pick.textContent = '';
+      d.sessions.forEach(function (s) {
+        var o = document.createElement('option');
+        o.value = s.id;
+        o.textContent = new Date(s.start).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: d.timezone }) +
+          ', ' + s.cid + ' (' + s.bookings + (s.bookings === 1 ? ' booking' : ' bookings') + ')';
+        pick.appendChild(o);
+      });
+      $('#cancelPanel').hidden = !d.sessions.length;
+    });
+  }
+  $('#cancelClass').addEventListener('click', function () {
+    var pick = $('#sessionPick');
+    if (!pick.value) return;
+    var label = pick.options[pick.selectedIndex].textContent;
+    if (!confirm('Cancel ' + label + '? Everyone booked will be cancelled and emailed. This cannot be undone.')) return;
+    call('/sessions/cancel', 'POST', { sid: pick.value, reason: $('#reason').value.trim() }).then(function (r) {
+      $('#reason').value = '';
+      return load().then(function () {
+        $('#msg').textContent = 'Class cancelled. ' + r.cancelled + (r.cancelled === 1 ? ' booking' : ' bookings') + ' cancelled, ' + r.emailed + (r.emailed === 1 ? ' email' : ' emails') + ' sent.';
+      });
+    }).catch(function (e) { $('#msg').textContent = e.message; });
+  });
+  $('#load').addEventListener('click', load);
+  $('#hideOld').addEventListener('click', function () { hideOld = !hideOld; this.textContent = hideOld ? 'Show all' : 'Hide cancelled and expired'; render(); });
+  tokenEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') load(); });
+  if (tokenEl.value) load();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paila Pilates</title>
+<meta name="description" content="Paila Pilates: Reformer pilates in a small studio. Paila means first. Book your first class online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EEE3;
+    --surface: #FAF6EE;
+    --ink: #33291F;
+    --muted: #6E6155;
+    --line: #DDD3C2;
+    --accent: #C9B79C;
+    --accent-strong: #8A7156;
+    --sans: "DM Sans", "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
+    --display: "Cormorant Garamond", "Noto Serif Devanagari", Georgia, "Times New Roman", serif;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #F4EEE3;
+      --surface: #FAF6EE;
+      --ink: #33291F;
+      --muted: #6E6155;
+      --line: #DDD3C2;
+      --accent: #C9B79C;
+      --accent-strong: #8A7156;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #F4EEE3;
+    --surface: #FAF6EE;
+    --ink: #33291F;
+    --muted: #6E6155;
+    --line: #DDD3C2;
+    --accent: #C9B79C;
+    --accent-strong: #8A7156;
+  }
+
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  [hidden] { display: none !important; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p { margin: 0; }
+  a { color: inherit; }
+  p { max-width: 60ch; }
+
+  .container {
+    width: 100%;
+    max-width: 1120px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  /* Focus */
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 4px;
+  }
+
+  /* Buttons and links */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0 1.75rem;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font: 400 1rem/1 var(--sans);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn.small { min-height: 2.5rem; padding: 0 1.25rem; font-size: 0.95rem; }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .link {
+    font-family: var(--sans);
+    font-size: 1rem;
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 0.35em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .link:hover { text-decoration-color: var(--ink); }
+  .text-btn {
+    background: none; border: 0; padding: 0;
+    font: 400 0.95rem/1.4 var(--sans);
+    color: var(--muted);
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 0.3em;
+    cursor: pointer;
+  }
+  .text-btn:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: min(calc(100svh - env(safe-area-inset-top, 0px)), 58rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .site {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: 1.5rem;
+  }
+  .mark {
+    font: 400 2rem/1 var(--display);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .site nav { display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 2.25rem); margin-left: auto; }
+  .site nav a {
+    font: 400 1rem/1 var(--sans);
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+  .site nav a:hover { color: var(--ink); }
+  .site nav a.btn { color: var(--bg); }
+  .site nav a.btn:hover { color: var(--bg); }
+
+  .ring {
+    position: absolute;
+    z-index: 0;
+    top: clamp(3.5rem, 9vw, 6rem);
+    right: clamp(-6rem, -8vw, -2rem);
+    width: min(78vw, 620px);
+    aspect-ratio: 1;
+    pointer-events: none;
+  }
+  .ring svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .ring circle { transform-box: fill-box; transform-origin: center; }
+  .ring .outer { fill: none; stroke: var(--accent-strong); stroke-width: 1; }
+  .ring .inner { fill: var(--accent); opacity: 0.45; }
+  .breath {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font: italic 400 1.5rem/1 var(--display);
+    color: var(--muted);
+    letter-spacing: 0.01em;
+  }
+  .breath span { grid-area: 1 / 1; opacity: 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ring .outer { animation: breathe-out 10s ease-in-out infinite; }
+    .ring .inner { animation: breathe-in 10s ease-in-out infinite; }
+    .breath .in { animation: cap-in 10s ease-in-out infinite; }
+    .breath .out { animation: cap-out 10s ease-in-out infinite; }
+  }
+  @keyframes breathe-out { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  @keyframes breathe-in  { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+  @keyframes cap-in  { 0% { opacity: 0; } 8% { opacity: 1; } 42% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes cap-out { 0%, 50% { opacity: 0; } 58% { opacity: 1; } 92% { opacity: 1; } 100% { opacity: 0; } }
+
+  .hero-body {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-bottom: clamp(1.5rem, 4vw, 3rem);
+  }
+  .lead {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 3.2vw, 2.25rem);
+    line-height: 1.22;
+    max-width: 26ch;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+    margin-top: 2rem;
+  }
+  .hero h1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 1.25rem;
+    margin-top: clamp(2rem, 5vw, 4rem);
+    font-family: var(--display);
+    font-weight: 300;
+    line-height: 0.85;
+  }
+  .wm {
+    font-size: clamp(7rem, 30vw, 21rem);
+    letter-spacing: -0.03em;
+    margin-left: -0.04em;
+  }
+  .wm-sub {
+    font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    color: var(--muted);
+  }
+
+  /* Sections */
+  .section { padding-block: clamp(4rem, 9vw, 8rem); }
+  .section.tint { background: var(--surface); border-block: 1px solid var(--line); }
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  h2 {
+    font: 400 clamp(2.5rem, 5.2vw, 3.9rem)/1.05 var(--display);
+    letter-spacing: -0.01em;
+  }
+  h3 { font: 400 1.2rem/1.3 var(--sans); letter-spacing: 0; }
+  .section-head p { margin-top: 1.25rem; color: var(--muted); max-width: 32ch; }
+
+  /* Classes */
+  .class-row {
+    display: grid;
+    grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+    gap: 0.75rem 2rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .class-row:last-child { border-bottom: 1px solid var(--line); }
+  .class-row h3 { font-family: var(--display); font-weight: 400; font-size: 2.1rem; line-height: 1.1; letter-spacing: 0; }
+  .class-row .meta { font: 400 0.95rem/1.4 var(--sans); color: var(--muted); margin-top: 0.35rem; }
+  .class-row p.blurb { color: var(--ink); max-width: 46ch; }
+
+  /* Booking */
+  fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+  legend { padding: 0; font: 400 1rem/1.4 var(--sans); color: var(--muted); margin-bottom: 0.9rem; }
+  legend.big { font: 400 2.1rem/1.15 var(--display); color: var(--ink); letter-spacing: 0; }
+
+  .days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.4rem; }
+  .day {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.75rem 0;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .day:hover { border-color: var(--ink); }
+  .day .dow { font-size: 0.8rem; color: var(--muted); }
+  .day .dnum { font-size: 1.2rem; font-weight: 300; line-height: 1.2; }
+  .day input, .session input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .day:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .day:has(input:checked) .dow { color: var(--bg); opacity: 0.75; }
+  .day:has(input:focus-visible) { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
+
+  .sessions-wrap { margin-top: 2.5rem; }
+  #sessionList { border-bottom: 1px solid var(--line); }
+  .session {
+    position: relative;
+    display: grid;
+    grid-template-columns: 6.25rem minmax(0, 1fr) auto 1.25rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 0.75rem;
+    margin-inline: -0.75rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  #sessionList .session:first-child { border-top-color: var(--line); }
+  .session:hover { background: var(--bg); }
+  .session .time { font-size: 1.35rem; font-weight: 300; letter-spacing: -0.01em; white-space: nowrap; }
+  .session .what { display: flex; flex-direction: column; min-width: 0; }
+  .session .what strong { font-weight: 400; font-size: 1.05rem; }
+  .session .what small { font-size: 0.9rem; color: var(--muted); }
+  .session .spots { font-size: 0.9rem; color: var(--muted); text-align: right; }
+  .session .dot {
+    width: 1.1rem; height: 1.1rem;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .session:has(input:checked) { background: var(--bg); }
+  .session:has(input:checked) .dot { background: var(--ink); box-shadow: inset 0 0 0 3px var(--surface); }
+  .session:has(input:disabled) { opacity: 0.5; cursor: not-allowed; }
+  .session:has(input:disabled):hover { background: transparent; }
+  .session:has(input:disabled) .dot { border-color: var(--muted); }
+  .session:has(input:focus-visible) { outline: 2px solid var(--accent-strong); outline-offset: -2px; }
+  .empty { font-family: var(--sans); color: var(--muted); padding: 1.5rem 0; }
+
+  #details { margin-top: 2.5rem; }
+  .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .field { display: flex; flex-direction: column; gap: 0.25rem; }
+  .field label { font: 400 0.95rem/1.4 var(--sans); color: var(--muted); }
+  .field input {
+    width: 100%;
+    padding: 0.55rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--muted);
+    border-radius: 0;
+    color: var(--ink);
+    font: 400 1.1rem/1.4 var(--sans);
+  }
+  .field input:focus { border-bottom-color: var(--ink); }
+  .submit-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    margin-top: 2rem;
+  }
+  #summary { font: 400 1rem/1.5 var(--sans); color: var(--muted); max-width: 34ch; }
+  #summary.ready { color: var(--ink); }
+  #formMsg { min-height: 1.5rem; margin-top: 1rem; font: 400 0.95rem/1.5 var(--sans); color: var(--ink); }
+
+  #confirm h3 { font: 400 clamp(2.3rem, 4.2vw, 3.1rem)/1.1 var(--display); letter-spacing: 0; }
+  #confirm h3:focus { outline: none; }
+  #confirm p { margin-top: 1rem; }
+  #confirm .btn { margin-top: 2rem; }
+
+  #mine { margin-top: 3.5rem; }
+  #mine ul { list-style: none; margin: 0.5rem 0 0; padding: 0; border-bottom: 1px solid var(--line); }
+  #mine li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+    font-family: var(--sans);
+  }
+  #mine li span small { display: block; color: var(--muted); font-size: 0.9rem; }
+
+  /* Payment */
+  .secure-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    max-width: none;
+    margin-top: 1.25rem;
+    font: 400 0.9rem/1.5 var(--sans);
+    color: var(--muted);
+  }
+  .secure-note svg { flex: none; width: 16px; height: 16px; margin-top: 0.15rem; }
+  #payment h3 { font: 400 clamp(2.2rem, 4vw, 3rem)/1.1 var(--display); letter-spacing: 0; }
+  #payment h3:focus { outline: none; }
+  .pay-summary { margin: 1.75rem 0 0; padding: 0; border-top: 1px solid var(--line); font-family: var(--sans); }
+  .pay-summary div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+  .pay-summary dt { color: var(--muted); }
+  .pay-summary dd { margin: 0; text-align: right; }
+  .pay-summary .total dd { font-size: 1.5rem; font-weight: 300; letter-spacing: -0.01em; }
+  #payMethods { margin-top: 1.75rem; }
+  .methods { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .method {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font: 400 1rem/1 var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .method:hover { border-color: var(--ink); }
+  .method input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .method:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .method:has(input:focus-visible) { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
+  .pay-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+  .pay-msg { max-width: none; min-height: 1.5rem; margin-top: 1rem; font: 400 0.95rem/1.5 var(--sans); color: var(--ink); }
+
+  /* Booking service hand-off */
+  .handoff h3 { font: 400 clamp(2rem, 4vw, 2.8rem)/1.1 var(--display); letter-spacing: 0; }
+  .handoff > p { margin-top: 1rem; color: var(--muted); max-width: 46ch; }
+  .handoff .map-actions { flex-direction: row; flex-wrap: wrap; }
+  .timetable { margin-top: 2.5rem; border-bottom: 1px solid var(--line); font-family: var(--sans); }
+  .tt-row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.5rem 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+  .tt-day { font-weight: 400; }
+  .tt-items { display: flex; flex-wrap: wrap; gap: 0.35rem 1.5rem; color: var(--muted); font-size: 0.95rem; }
+  .tt-items b { font-weight: 400; color: var(--ink); }
+  @media (max-width: 640px) { .tt-row { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Booking extras */
+  .flash {
+    max-width: none;
+    margin: 0 0 1.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    font: 400 1rem/1.5 var(--sans);
+  }
+  .dot.sq { border-radius: 4px !important; }
+  #cart { margin-top: 2.5rem; }
+  #cart ul, #confirm ul { list-style: none; margin: 0.75rem 0 0; padding: 0; border-bottom: 1px solid var(--line); font-family: var(--sans); }
+  #cart li, #confirm li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--line);
+  }
+  #confirm ul + p { margin-top: 1.25rem; }
+  .pay-summary dd .line { display: block; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  #qtyGroup { margin-top: 2.5rem; }
+  .stepper { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.25rem; border: 1px solid var(--line); border-radius: 999px; }
+  .stepper button {
+    width: 2.75rem; height: 2.75rem;
+    border: 0; border-radius: 50%;
+    background: transparent; color: var(--ink);
+    font: 300 1.5rem/1 var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .stepper button:hover:not(:disabled) { background: var(--bg); }
+  .stepper button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .stepper output { min-width: 3rem; text-align: center; font: 300 1.5rem/1 var(--sans); }
+  .qty-hint { max-width: none; margin-top: 0.75rem; font: 400 0.9rem/1.4 var(--sans); color: var(--muted); }
+
+  /* Prices */
+  .price-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .price-row:last-child { border-bottom: 1px solid var(--line); }
+  .price-row h3 { font-weight: 400; font-size: 1.2rem; }
+  .price-row p { font: 400 0.95rem/1.4 var(--sans); color: var(--muted); margin-top: 0.2rem; }
+  .price-row .price { font: 300 1.9rem/1 var(--sans); letter-spacing: -0.02em; }
+
+  /* Studio */
+  .statement {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.6vw, 3.3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    max-width: 24ch;
+    letter-spacing: 0;
+  }
+  .trio {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
+    margin-top: clamp(3rem, 7vw, 5.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .trio p { margin-top: 0.6rem; color: var(--muted); font-size: 1.05rem; }
+
+  /* Illustrations */
+  .arch {
+    --a1: #E9DEC8; --a2: #DCCDB0; --a3: #C8B493; --a4: #B39D7D; --a5: #8F7F65; --a6: #FAF6EE;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 999px 999px 0 0;
+    background: var(--a1);
+  }
+  .arch svg { display: block; width: 100%; height: 100%; }
+  .f1 { fill: var(--a1); } .f2 { fill: var(--a2); } .f3 { fill: var(--a3); }
+  .f4 { fill: var(--a4); } .f5 { fill: var(--a5); } .f6 { fill: var(--a6); }
+  .s3 { stroke: var(--a3); fill: none; }
+  .s5 { stroke: var(--a5); fill: none; }
+  .class-art { margin-top: 2.75rem; max-width: 300px; }
+  .trio .arch { max-width: 340px; margin-bottom: 1.5rem; }
+
+  /* Location */
+  .addr {
+    display: block;
+    margin-top: 1.5rem;
+    font: 400 1.9rem/1.2 var(--display);
+    font-style: normal;
+    color: var(--ink);
+  }
+  .addr span { display: block; }
+  .map-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 2rem; }
+  .map-wrap { min-width: 0; }
+  .map {
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #56613F;
+  }
+  .map svg { display: block; width: 100%; height: 100%; }
+  .map .pin { fill: #FAF6EE; }
+  .map .pin-dot { fill: #33291F; }
+  .map .pin-base { fill: #FAF6EE; opacity: 0.4; }
+  .map .pulse { fill: #FAF6EE; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .map .maplabel {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 36px;
+    fill: #FAF6EE;
+    stroke: rgba(28, 34, 18, 0.75);
+    stroke-width: 6px;
+    stroke-linejoin: round;
+    paint-order: stroke;
+  }
+  .map .place {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 26px;
+    fill: #FAF6EE;
+    stroke: rgba(28, 34, 18, 0.75);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+    paint-order: stroke;
+  }
+  .map-note { max-width: none; margin-top: 0.75rem; font: 400 0.9rem/1.4 var(--sans); color: var(--muted); }
+  @media (prefers-reduced-motion: no-preference) {
+    .map .pulse { animation: pulse 3.6s ease-out infinite; }
+  }
+  @keyframes pulse { 0% { transform: scale(0.6); opacity: 0.35; } 100% { transform: scale(3.4); opacity: 0; } }
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding-block: 3rem; }
+  .foot {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2rem;
+    font: 400 1rem/1.6 var(--sans);
+    color: var(--muted);
+  }
+  .foot .mark { color: var(--ink); display: inline-block; margin-bottom: 0.75rem; }
+  .foot h3 { font: 400 1rem/1.5 var(--sans); color: var(--ink); margin-bottom: 0.4rem; }
+  .foot p { max-width: 32ch; }
+  .foot a { text-decoration-color: var(--line); text-underline-offset: 0.3em; }
+  .copy { margin-top: 2.5rem; font: 400 0.9rem/1.4 var(--sans); color: var(--muted); }
+
+  @media (max-width: 820px) {
+    .split { grid-template-columns: minmax(0, 1fr); }
+    .section-head p { max-width: 46ch; }
+    .trio { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .foot { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .site nav a:not(.btn) { display: none; }
+    .class-row { grid-template-columns: minmax(0, 1fr); }
+    .fields { grid-template-columns: minmax(0, 1fr); }
+    .session { grid-template-columns: 4.25rem minmax(0, 1fr) 1.25rem; row-gap: 0.15rem; }
+    .session .spots { grid-column: 2; grid-row: 2; text-align: left; }
+    .session .dot { grid-column: 3; grid-row: 1; }
+    .days { gap: 0.3rem; }
+  }
+
+  .addr { font-size: 1.6rem; }
+
+  /* Language toggle */
+  .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+  .lang button {
+    border: 0; background: transparent; color: var(--muted);
+    font: 400 0.85rem/1 var(--sans);
+    padding: 0.45rem 0.75rem; border-radius: 999px; cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .lang button:hover { color: var(--ink); }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .lang button:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+
+  /* Offers */
+  .offer {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem;
+    padding: 1.75rem 0; border-top: 1px solid var(--line);
+  }
+  .offer:last-child { border-bottom: 1px solid var(--line); }
+  .offer.star {
+    background: var(--surface); box-shadow: inset 3px 0 0 var(--ink);
+    padding-left: 1.25rem; padding-right: 1.25rem; margin-inline: -1.25rem;
+  }
+  .offer h3 { font: 400 2rem/1.1 var(--display); letter-spacing: 0; }
+  .offer .tag {
+    display: inline-block; margin-left: 0.75rem; padding: 0.2rem 0.7rem; vertical-align: middle;
+    border: 1px solid var(--line); border-radius: 999px;
+    font: 400 0.8rem/1.4 var(--sans); color: var(--muted);
+  }
+  .offer.star .tag { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .offer ul {
+    list-style: none; margin: 0.9rem 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem;
+    font: 400 0.95rem/1.5 var(--sans); color: var(--muted);
+  }
+  .offer-price { text-align: right; font-family: var(--sans); }
+  .offer .amount { display: block; font: 300 1.9rem/1 var(--sans); letter-spacing: -0.02em; }
+  .offer .per { display: block; margin-top: 0.4rem; font: 400 0.9rem/1.3 var(--sans); color: var(--muted); }
+  .offer .btn { margin-top: 1rem; }
+  @media (max-width: 640px) {
+    .offer { grid-template-columns: minmax(0, 1fr); }
+    .offer-price { text-align: left; }
+  }
+
+  /* Nepali text needs more line height and no tight letter spacing */
+  html[lang="ne"] body { line-height: 1.8; }
+  html[lang="ne"] h2, html[lang="ne"] h3, html[lang="ne"] .lead, html[lang="ne"] .statement,
+  html[lang="ne"] .addr, html[lang="ne"] legend.big, html[lang="ne"] .offer h3 { line-height: 1.4; }
+  html[lang="ne"] .lead { max-width: 32ch; }
+  html[lang="ne"] body *:not(.wm):not(.mark) { letter-spacing: 0 !important; }
+  .acct { max-width: none; margin: 0 0 1.5rem; font: 400 0.95rem/1.5 var(--sans); color: var(--muted); }
+  #auth h3 { font: 400 clamp(2.2rem, 4vw, 3rem)/1.1 var(--display); letter-spacing: 0; }
+  #auth h3:focus { outline: none; }
+  .auth-sub { max-width: none; margin-top: 0.75rem; font: 400 1rem/1.5 var(--sans); color: var(--muted); }
+  .auth-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .tab {
+    min-height: 2.5rem; padding: 0 1.25rem;
+    border: 1px solid var(--line); border-radius: 999px;
+    background: transparent; color: var(--ink);
+    font: 400 0.95rem/1 var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .tab:hover { border-color: var(--ink); }
+  .tab[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .fields.one { grid-template-columns: minmax(0, 1fr); max-width: 26rem; margin-top: 1.75rem; }
+  .field-hint { font: 400 0.85rem/1.4 var(--sans); color: var(--muted); }
+  .offer-note { max-width: none; margin-top: 2rem; font: 400 0.95rem/1.5 var(--sans); color: var(--ink); }
+  .offer-reg { margin-top: 1.25rem; font-size: 0.95rem; color: var(--ink); max-width: none; }
+  .auth-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+  #authMsg { min-height: 1.5rem; margin-top: 1rem; font: 400 0.95rem/1.5 var(--sans); color: var(--ink); }</style>
+</head>
+<body>
+
+<section class="hero" id="top">
+  <div class="ring" aria-hidden="true">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <circle class="outer" cx="300" cy="300" r="296"/>
+      <circle class="inner" cx="300" cy="300" r="190"/>
+    </svg>
+    <div class="breath"><span class="in" data-i18n="hero.in">breathe in</span><span class="out" data-i18n="hero.out">breathe out</span></div>
+  </div>
+
+  <header class="site container">
+    <a class="mark" href="#top" data-i18n-aria="aria.home" aria-label="Paila Pilates, home">paila</a>
+    <nav aria-label="Main" data-i18n-aria="aria.nav">
+      <a href="#classes" data-i18n="nav.classes">Classes</a>
+      <a href="#prices" data-i18n="nav.prices">Prices</a>
+      <a href="#studio" data-i18n="nav.studio">Studio</a>
+      <a href="#visit" data-i18n="nav.visit">Visit</a>
+      <a id="navLogin" href="#" target="_blank" rel="noopener noreferrer" hidden>Log in</a>
+      <div class="lang" role="group" data-i18n-aria="aria.lang" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+        <button type="button" data-lang="ne" aria-pressed="false" lang="ne">नेपाली</button>
+      </div>
+      <a class="btn small" href="#book" data-i18n="nav.book">Book</a>
+    </nav>
+  </header>
+
+  <div class="hero-body container">
+    <p class="lead" data-i18n="hero.lead">Paila means first. Come for the first breath, the first position, the first class.</p>
+    <div class="actions">
+      <a class="btn" href="#book" data-i18n="hero.cta">Book a class</a>
+      <a class="link" id="nextClass" href="#book" hidden></a>
+    </div>
+    <h1><span class="wm">paila</span> <span class="wm-sub" data-i18n="hero.sub">pilates</span></h1>
+  </div>
+</section>
+
+<main>
+  <section class="section" id="classes">
+    <div class="container split">
+      <div class="section-head">
+        <h2 data-i18n="classes.title">Classes</h2>
+        <p data-i18n="classes.lead">Reformer pilates in a small, calm studio.</p>
+        <figure class="arch class-art">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <rect class="f1" width="400" height="500"/>
+            <circle class="f6" cx="270" cy="165" r="72" opacity="0.85"/>
+            <rect class="f2" y="395" width="400" height="105"/>
+            <rect class="f4" x="150" y="383" width="250" height="12"/>
+            <ellipse class="f4" cx="215" cy="402" rx="140" ry="5" opacity="0.3"/>
+            <circle class="f4" cx="150" cy="300" r="95"/>
+            <circle class="f2" cx="150" cy="300" r="82"/>
+            <circle class="f3" cx="150" cy="300" r="68"/>
+            <circle class="f2" cx="150" cy="300" r="54"/>
+            <circle class="f3" cx="150" cy="300" r="40"/>
+            <circle class="f2" cx="150" cy="300" r="26"/>
+            <circle class="f4" cx="150" cy="300" r="12"/>
+          </svg>
+        </figure>
+      </div>
+      <div class="class-list">
+        <article class="class-row">
+          <div>
+            <h3 data-i18n="classes.reformer.t">Reformer class</h3>
+            <p class="meta" data-i18n="classes.reformer.m">Group class</p>
+          </div>
+          <p class="blurb" data-i18n="classes.reformer.b">Springs, straps and a moving carriage for supported strength, in a small group.</p>
+        </article>
+        <article class="class-row">
+          <div>
+            <h3 data-i18n="classes.check.t">Body Composition Check-In</h3>
+            <p class="meta" data-i18n="classes.check.m">With Signature, Paila+ and Paila 90</p>
+          </div>
+          <p class="blurb" data-i18n="classes.check.b">A check-in on how your body is changing over time. Included with Signature (1), Paila+ (2) and Paila 90 (3).</p>
+        </article>
+        <article class="class-row">
+          <div>
+            <h3 data-i18n="classes.lounge.t">Lounge and library</h3>
+            <p class="meta" data-i18n="classes.lounge.m">Included</p>
+          </div>
+          <p class="blurb" data-i18n="classes.lounge.b">Coffee or tea and the lounge come with every group class offer. Essential, Signature and Paila+ also include the library.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint" id="book">
+    <div class="container split">
+      <div class="section-head">
+        <h2 data-i18n="book.title">Book a class</h2>
+        <p id="bookLead"></p>
+      </div>
+
+      <div class="book-flow">
+        <p class="flash" id="flash" role="status" aria-live="polite" hidden></p>
+        <p class="acct" id="acct" hidden><span id="acctName"></span> <button type="button" class="text-btn" id="acctOut" data-i18n="acct.out">Log out</button></p>
+
+        <div id="bookForm">
+          <div id="pickers">
+            <fieldset>
+              <legend data-i18n="book.day">Day</legend>
+              <div class="days" id="dayGroup"></div>
+            </fieldset>
+
+            <fieldset class="sessions-wrap">
+              <legend class="big" id="sessionLegend" data-i18n="book.sessions">Sessions</legend>
+              <div id="sessionList"></div>
+            </fieldset>
+          </div>
+
+          <fieldset id="qtyGroup" hidden>
+            <legend data-i18n="book.spots">Spots</legend>
+            <div class="stepper">
+              <button type="button" id="qtyMinus" data-i18n-aria="book.fewer" aria-label="Fewer spots">&minus;</button>
+              <output id="qtyOut" aria-live="polite">1</output>
+              <button type="button" id="qtyPlus" data-i18n-aria="book.more" aria-label="More spots">+</button>
+            </div>
+            <p class="qty-hint" id="qtyHint"></p>
+          </fieldset>
+
+          <form id="details" novalidate>
+            <p class="offer-note" id="offerNote" hidden></p>
+            <div class="submit-row">
+              <p id="summary">Choose a session to continue.</p>
+              <button class="btn" type="submit" id="submitBtn" data-i18n="form.reserve">Reserve now</button>
+            </div>
+            <p class="secure-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg><span data-i18n="form.secureAcct">You will log in or create an account, then pay on your payment provider's own secure page.</span></p>
+            <p id="formMsg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div id="auth" hidden>
+          <h3 id="authTitle" tabindex="-1">Log in to continue</h3>
+          <p class="auth-sub" id="authSummary"></p>
+          <div class="auth-tabs">
+            <button type="button" class="tab" id="tabLogin" aria-pressed="true" data-i18n="auth.tabLogin">Log in</button>
+            <button type="button" class="tab" id="tabRegister" aria-pressed="false" data-i18n="auth.tabRegister">Create account</button>
+          </div>
+          <p class="field-hint offer-reg" id="offerReg" hidden></p>
+          <form id="authForm" novalidate>
+            <div class="fields one">
+              <div class="field" id="nameField" hidden>
+                <label for="aname" data-i18n="form.name">Name</label>
+                <input id="aname" type="text" autocomplete="name" maxlength="80">
+              </div>
+              <div class="field">
+                <label for="aemail" data-i18n="form.email">Email</label>
+                <input id="aemail" type="email" autocomplete="email" inputmode="email" maxlength="254">
+              </div>
+              <div class="field">
+                <label for="apass" data-i18n="form.pass">Password</label>
+                <input id="apass" type="password" autocomplete="current-password" maxlength="128">
+                <span class="field-hint" id="passHint" hidden data-i18n="auth.hint">At least 8 characters.</span>
+              </div>
+            </div>
+            <div class="auth-actions">
+              <button class="btn" type="submit" id="authBtn">Log in</button>
+              <button class="text-btn" type="button" id="authBack" data-i18n="auth.back">Back to booking</button>
+            </div>
+            <p class="secure-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg><span data-i18n="auth.note">Your password is stored securely and is never visible to us.</span></p>
+            <p id="authMsg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div id="payment" hidden>
+          <h3 id="payTitle" tabindex="-1" data-i18n="pay.title">Secure payment</h3>
+          <dl class="pay-summary">
+            <div><dt data-i18n="pay.booking">Booking</dt><dd id="payWhat"></dd></div>
+            <div class="total"><dt id="payLabel2" data-i18n="pay.total">Total</dt><dd id="payTotal"></dd></div>
+          </dl>
+          <fieldset id="payMethods" hidden></fieldset>
+          <p class="secure-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg><span data-i18n="pay.note">You will be taken to your payment provider's secure page. Paila never sees or stores your card or wallet details.</span></p>
+          <div class="pay-actions">
+            <button class="btn" type="button" id="payGo">Continue to secure payment</button>
+            <button class="btn ghost" type="button" id="payDemo" hidden data-i18n="pay.demo">Preview without paying</button>
+            <button class="text-btn" type="button" id="payBack" data-i18n="pay.back">Change booking</button>
+          </div>
+          <p class="pay-msg" id="payMsg" role="status" aria-live="polite"></p>
+        </div>
+
+        <div id="confirm" hidden>
+          <h3 id="confirmTitle" tabindex="-1"></h3>
+          <ul id="confirmList"></ul>
+          <p id="confirmText"></p>
+          <button class="btn ghost" type="button" id="another" data-i18n="conf.back">Back to booking</button>
+        </div>
+
+        <div id="mine" hidden>
+          <h3 data-i18n="mine.title">Your bookings</h3>
+          <ul id="mineList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prices">
+    <div class="container split">
+      <div class="section-head">
+        <h2 data-i18n="prices.title">Prices</h2>
+        <p data-i18n="prices.lead">Book and pay per class online. For packages and memberships, write to us and we will set you up.</p>
+      </div>
+      <div id="offers"></div>
+    </div>
+  </section>
+
+  <section class="section tint" id="studio">
+    <div class="container">
+      <p class="statement" data-i18n="studio.statement">We named the studio for how every class begins: one breath, before any movement, taken as if for the first time.</p>
+      <div class="trio">
+        <div>
+          <figure class="arch"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <rect class="f1" width="400" height="500"/>
+            <circle class="f6" cx="200" cy="205" r="125" opacity="0.8"/>
+            <rect class="f2" y="415" width="400" height="85"/>
+            <ellipse class="f5" cx="212" cy="424" rx="132" ry="9" opacity="0.3"/>
+            <ellipse class="f5" cx="200" cy="385" rx="100" ry="46"/>
+            <ellipse class="f4" cx="204" cy="322" rx="74" ry="38"/>
+            <ellipse class="f3" cx="199" cy="272" rx="48" ry="28"/>
+            <ellipse class="f6" cx="188" cy="262" rx="14" ry="7" opacity="0.5"/>
+          </svg></figure>
+          <h3 data-i18n="studio.t1">Small rooms</h3>
+          <p data-i18n="studio.p1">Our Reformer classes are kept small, so your instructor can see you move.</p>
+        </div>
+        <div>
+          <figure class="arch"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <rect class="f1" width="400" height="500"/>
+            <circle class="f2" cx="200" cy="215" r="132"/>
+            <ellipse class="f3" cx="200" cy="474" rx="62" ry="8" opacity="0.6"/>
+            <path class="s5" stroke-width="3" stroke-linecap="round" d="M200 472 C196 380 206 300 200 170"/>
+            <path class="f4" d="M200 384 C150 374 120 334 118 294 C165 296 196 329 200 384Z"/>
+            <path class="f3" d="M201 324 C250 316 282 276 284 236 C238 238 205 272 201 324Z"/>
+            <path class="f3" d="M199 272 C160 264 138 234 138 202 C176 206 197 234 199 272Z"/>
+            <path class="f5" d="M200 205 C180 175 182 138 200 108 C218 138 220 175 200 205Z"/>
+          </svg></figure>
+          <h3 data-i18n="studio.t2">Slow progress</h3>
+          <p data-i18n="studio.p2">We teach precision before intensity. Strength follows when the movement is clean.</p>
+        </div>
+        <div>
+          <figure class="arch"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <rect class="f1" width="400" height="500"/>
+            <circle class="f6" cx="200" cy="230" r="86"/>
+            <circle class="s3" cx="200" cy="230" r="118" stroke-width="1"/>
+            <path class="f2" d="M0 330 C90 290 170 300 250 325 C320 345 370 335 400 320 V500 H0Z"/>
+            <path class="f3" d="M0 382 C80 347 160 362 230 387 C300 412 360 397 400 377 V500 H0Z"/>
+            <path class="f4" d="M0 432 C100 407 190 422 270 447 C330 464 370 457 400 447 V500 H0Z"/>
+          </svg></figure>
+          <h3 data-i18n="studio.t3">New is normal</h3>
+          <p data-i18n="studio.p3">Everyone has a first class. Arrive ten minutes early and we will take care of the rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="visit">
+    <div class="container split">
+      <div class="section-head">
+        <h2 data-i18n="visit.title">Find us</h2>
+        <address class="addr" id="addr"><span>JK Central, 3rd floor</span><span>Jawalakhel Park, Lalitpur 44600</span><span>Bagmati Province, Nepal</span></address>
+        <p data-i18n="visit.where">Find us on the 3rd floor of the JK Central building, Jawalakhel Park, Lalitpur.</p>
+        <p data-i18n="visit.hours">Classes start at 7:00 on weekdays.</p>
+        <div class="map-actions">
+          <a class="btn" id="gmaps" href="#" target="_blank" rel="noopener noreferrer" data-i18n="visit.google">Open in Google Maps</a>
+          <a class="btn ghost" id="amaps" href="#" target="_blank" rel="noopener noreferrer" data-i18n="visit.apple">Open in Apple Maps</a>
+        </div>
+      </div>
+      <div class="map-wrap">
+      <figure class="map">
+        <iframe id="liveMap" title="Live satellite map showing the studio location" data-i18n-title="visit.liveTitle" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </figure>
+      <p class="map-note" data-i18n="visit.liveNote">Live satellite map. Use the buttons for directions.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a class="mark" href="#top">paila</a>
+        <p data-i18n="foot.tag">Reformer pilates in small groups.</p>
+      </div>
+      <div>
+        <h3 data-i18n="foot.visit">Visit</h3>
+        <p id="footAddr">JK Central, 3rd floor, Jawalakhel Park, Lalitpur 44600, Bagmati Province, Nepal</p>
+        <p data-i18n="visit.hours">Classes start at 7:00 on weekdays.</p>
+      </div>
+      <div>
+        <h3 data-i18n="foot.hello">Say hello</h3>
+        <p><a href="mailto:pailapilates10@gmail.com">pailapilates10@gmail.com</a></p>
+        <p>@pailapilates</p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Paila Pilates</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---------- Settings you may want to change ----------
+  var PRICE_DROPIN = 1499; // price of one spot in a class (NPR)
+  var priceNow = PRICE_DROPIN;
+
+  // Placeholder timetable (weekday 0 = Sunday). Replace with your real class times.
+  var CLASSES = { reformer: { cap: 12 } };
+  var WEEK = {
+    0: [['7:00', 'reformer'], ['8:00', 'reformer'], ['9:00', 'reformer'], ['10:00', 'reformer'], ['15:00', 'reformer'], ['16:00', 'reformer'], ['17:00', 'reformer'], ['18:00', 'reformer']],
+    1: [['7:00', 'reformer'], ['8:00', 'reformer'], ['9:00', 'reformer'], ['10:00', 'reformer'], ['15:00', 'reformer'], ['16:00', 'reformer'], ['17:00', 'reformer'], ['18:00', 'reformer']],
+    2: [['7:00', 'reformer'], ['8:00', 'reformer'], ['9:00', 'reformer'], ['10:00', 'reformer'], ['15:00', 'reformer'], ['16:00', 'reformer'], ['17:00', 'reformer'], ['18:00', 'reformer']],
+    3: [['7:00', 'reformer'], ['8:00', 'reformer'], ['9:00', 'reformer'], ['10:00', 'reformer'], ['15:00', 'reformer'], ['16:00', 'reformer'], ['17:00', 'reformer'], ['18:00', 'reformer']],
+    4: [['7:00', 'reformer'], ['8:00', 'reformer'], ['9:00', 'reformer'], ['10:00', 'reformer'], ['15:00', 'reformer'], ['16:00', 'reformer'], ['17:00', 'reformer'], ['18:00', 'reformer']],
+    5: [['7:00', 'reformer'], ['8:00', 'reformer'], ['9:00', 'reformer'], ['10:00', 'reformer']],
+    6: []
+  };
+
+  // The studio. Map links and addresses update everywhere from these values.
+  var STUDIO = {
+    name: 'Paila Pilates',
+    email: 'pailapilates10@gmail.com',
+    address: {"en": ["JK Central, 3rd floor", "Jawalakhel Park, Lalitpur 44600", "Bagmati Province, Nepal"], "ne": ["जेके सेन्ट्रल, तेस्रो तला", "जावलाखेल पार्क, ललितपुर 44600", "बागमती प्रदेश, नेपाल"]},
+    lat: 27.6728007,
+    lng: 85.3155726
+  };
+
+  // The offers shown in the Prices section. Prices are in NPR.
+  // per = price per class shown to visitors; approx adds "about"; features are explained in featText().
+  var OFFERS = [
+    { id: 'first-step', name: 'First Step', price: 1999, per: 666, classes: 3, newClients: true, features: ['classes', 'coffee', 'lounge'] },
+    { id: 'drop-in', name: 'Drop-in', price: 1499, per: 1499, classes: 1, features: ['classes', 'coffee', 'lounge'] },
+    { id: 'essential', name: 'Essential', price: 8999, per: 1125, classes: 8, features: ['classes', 'coffee', 'loungeLib', 'retail'] },
+    { id: 'signature', name: 'Signature', price: 11999, per: 1000, approx: true, classes: 12, star: true,
+      features: ['classes', 'checkin:1', 'coffee', 'loungeLib', 'priority', 'retail'] },
+    { id: 'paila-plus', name: 'Paila+', price: 14999, per: 937, classes: 16,
+      features: ['classes', 'checkin:2', 'coffee', 'loungeLib', 'priority', 'retail', 'guestMat'] },
+    { id: 'paila-90', name: 'Paila 90', price: 29999, per: 1000, approx: true, classes: 30, weeks: 12,
+      features: ['classes', 'checkin:3', 'progress', 'socks', 'coffeeLounge', 'priority'] }
+  ];
+
+  function $(s) { return document.querySelector(s); }
+  function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  // ---------- Language (English / Nepali) ----------
+  var I18N = {"en": {"meta.title": "Paila Pilates", "meta.desc": "Paila Pilates: Reformer pilates in a small studio. Paila means first. Book your first class online.", "aria.home": "Paila Pilates, home", "aria.nav": "Main", "aria.lang": "Language", "nav.classes": "Classes", "nav.prices": "Prices", "nav.studio": "Studio", "nav.visit": "Visit", "nav.login": "Log in", "nav.logout": "Log out", "nav.book": "Book", "hero.in": "breathe in", "hero.out": "breathe out", "hero.lead": "Paila means first. Come for the first breath, the first position, the first class.", "hero.cta": "Book a class", "hero.sub": "pilates", "next.today": "Next class: today at {time}", "next.day": "Next class: {day} at {time}", "classes.title": "Classes", "classes.lead": "Reformer pilates in a small, calm studio.", "classes.reformer.t": "Reformer class", "classes.reformer.m": "Group class", "classes.reformer.b": "Springs, straps and a moving carriage for supported strength, in a small group.", "classes.check.t": "Body Composition Check-In", "classes.check.m": "With Signature, Paila+ and Paila 90", "classes.check.b": "A check-in on how your body is changing over time. Included with Signature (1), Paila+ (2) and Paila 90 (3).", "classes.lounge.t": "Lounge and library", "classes.lounge.m": "Included", "classes.lounge.b": "Coffee or tea and the lounge come with every group class offer. Essential, Signature and Paila+ also include the library.", "book.title": "Book a class", "book.lead": "Choose a session and how many spots you need. Each spot is {amt}.", "book.day": "Day", "book.sessions": "Sessions", "book.spots": "Spots", "book.fewer": "Fewer spots", "book.more": "More spots", "book.unavailable": "Booking is temporarily unavailable. Please try again soon.", "book.noclasses": "No classes are scheduled right now.", "class.reformer": "Reformer", "line": "{cls}, {day} at {time}", "sess.sub": "Group Reformer class", "sess.full": "Full", "sess.cancelled": "Cancelled", "sess.left": "{n} spots left", "sess.left.one": "1 spot left", "sess.spots": "{n} spots", "sess.none": "No more classes on this day. Choose another day.", "qty.left": "{n} spots left in this session.", "qty.left.one": "1 spot left in this session.", "qty.max": "Up to {n} spots per booking.", "spots.n": "{n} spots", "spots.n.one": "1 spot", "form.name": "Name", "form.email": "Email", "form.pass": "Password", "form.reserve": "Reserve now", "form.choose": "Choose a session to continue.", "form.summary": "{cls}, {day} at {time}. {spots}, {total} in total.", "form.summaryDisc": "{cls}, {day} at {time}. {spots}, {total} in total ({pct}% off your first class).", "form.secure": "Payment happens on your payment provider's own secure page.", "form.secureAcct": "You will log in or create an account, then pay on your payment provider's own secure page.", "msg.chooseFirst": "Choose a session first.", "msg.full": "That session is full. Choose another time.", "msg.onlyLeft": "Only {n} spots left, so we updated your selection.", "msg.onlyLeft.one": "Only 1 spot left, so we updated your selection.", "msg.name": "Enter your name.", "msg.email": "Enter a valid email address.", "msg.passNew": "Use at least 8 characters for your password.", "msg.passEnter": "Enter your password.", "pay.title": "Secure payment", "pay.booking": "Booking", "pay.total": "Total", "pay.note": "You will be taken to your payment provider's secure page. Paila never sees or stores your card or wallet details.", "pay.go": "Continue to secure payment", "pay.demo": "Preview without paying", "pay.back": "Change booking", "pay.now": "Go now", "pay.taking": "Taking you to secure payment…", "pay.with": "Pay with", "pay.preview": "Payments aren't connected yet, so this is a preview. Nothing is charged.", "pay.unavailable": "Online payment is not available yet. Your spot is held for {n} minutes. Please contact the studio to pay.", "pay.line.each": "{spots} × {amt}", "pay.line.disc": "First class {pct}% off: −{amt}", "method.card": "Card", "conf.title": "You're booked, {name}.", "conf.arrive": "Arrive ten minutes early and bring grip socks if you have them.", "conf.preview": "This was a preview, so no payment was taken.", "conf.email": "A confirmation email is on its way to {email}.", "conf.back": "Back to booking", "mine.title": "Your bookings", "mine.pending": "Awaiting payment", "mine.confirmed": "Confirmed", "mine.cancel": "Cancel booking", "auth.title.login": "Log in to continue", "auth.title.register": "Create your account", "auth.sub": "Your bookings are saved to your account.", "auth.tabLogin": "Log in", "auth.tabRegister": "Create account", "auth.btnLogin": "Log in", "auth.btnRegister": "Create account", "auth.hint": "At least 8 characters.", "auth.back": "Back to booking", "auth.note": "Your password is stored securely and is never visible to us.", "auth.offer": "Create an account and your first class is {pct}% off.", "auth.relogin": "Please log in again to continue.", "auth.welcome": "Welcome, {name}. You are logged in.", "auth.loggedOut": "You have been logged out.", "acct.signed": "Signed in as {name}.", "acct.out": "Log out", "offer.visitor": "New here? Create an account and your first class is {pct}% off.", "offer.user": "Your first class is {pct}% off.", "ret.thanks": "Thank you. Your booking will show as confirmed as soon as your payment is verified.", "ret.thanksEmail": "Thank you. Your booking will show as confirmed as soon as your payment is verified, and we will email you a confirmation.", "ret.login": "Please log in to see your bookings.", "prices.title": "Prices", "prices.lead": "Book and pay per class online. For packages and memberships, write to us and we will set you up.", "tag.new": "New-client trial", "tag.rec": "Recommended", "feat.classes": "{n} Reformer classes", "feat.classes.one": "1 Reformer class", "feat.classesWeeks": "{n} Reformer classes over {w} weeks", "feat.coffee": "Coffee or tea", "feat.lounge": "Lounge", "feat.loungeLib": "Lounge and library", "feat.coffeeLounge": "Coffee and lounge", "feat.retail": "Member retail benefit", "feat.priority": "Priority booking", "feat.checkin": "{n} Body Composition Check-Ins", "feat.checkin.one": "1 Body Composition Check-In", "feat.guestMat": "1 guest Mat pass", "feat.progress": "Progress conversations", "feat.socks": "Grip socks", "offer.per": "{amt} per class", "offer.perApprox": "About {amt} per class", "offer.book": "Book a class", "offer.enquire": "Enquire", "mail.subject": "Paila: {offer}", "mail.body": "Hello Paila,\n\nI would like to know more about {offer} ({price}).\n\nMy name:\n", "studio.statement": "We named the studio for how every class begins: one breath, before any movement, taken as if for the first time.", "studio.t1": "Small rooms", "studio.p1": "Our Reformer classes are kept small, so your instructor can see you move.", "studio.t2": "Slow progress", "studio.p2": "We teach precision before intensity. Strength follows when the movement is clean.", "studio.t3": "New is normal", "studio.p3": "Everyone has a first class. Arrive ten minutes early and we will take care of the rest.", "visit.title": "Find us", "visit.where": "Find us on the 3rd floor of the JK Central building, Jawalakhel Park, Lalitpur.", "visit.hours": "Classes start at 7:30 on weekdays, 9:00 on Saturdays and 10:00 on Sundays.", "visit.google": "Open in Google Maps", "visit.apple": "Open in Apple Maps", "visit.mapAria": "Illustrated aerial view of Jawalakhel with the studio pinned and Central Zoo to the west", "visit.mapNote": "Illustrated aerial view of Jawalakhel, with Central Zoo to the west. Streets are stylized; the buttons open the live satellite map.", "visit.liveNote": "Live satellite map. Use the buttons for directions.", "visit.liveTitle": "Live satellite map showing the studio location", "foot.tag": "Reformer pilates in small groups.", "foot.visit": "Visit", "foot.hello": "Say hello", "err.blocked": "Request blocked.", "err.content_type": "Unsupported content type.", "err.rate_limited": "Too many attempts. Please try again later.", "err.invalid_request": "Invalid request.", "err.password_length": "Use a password of 8 to 128 characters.", "err.email_taken": "An account with this email already exists. Log in instead.", "err.bad_login": "Incorrect email or password.", "err.login_required": "Please log in to continue.", "err.qty_range": "Choose between 1 and {n} spots.", "err.session_gone": "That session is no longer available.", "err.session_cancelled": "That class has been cancelled.", "err.session_full": "That session is full.", "err.qty_over": "Only {n} spots are left.", "err.too_many_unpaid": "You have several unpaid bookings. Please pay for or cancel one first.", "err.not_found": "Booking not found.", "err.paid_contact": "This booking is paid. Please contact the studio to change it.", "err.expired": "This booking has expired. Please book again.", "err.server_error": "Something went wrong. Please try again."}, "ne": {"meta.title": "पैला पाइलेट्स (Paila Pilates)", "meta.desc": "पैला पाइलेट्स: सानो स्टुडियोमा रिफर्मर पाइलेट्स। आफ्नो पहिलो कक्षा अनलाइन बुक गर्नुहोस्।", "aria.home": "Paila Pilates, गृहपृष्ठ", "aria.nav": "मुख्य मेनु", "aria.lang": "भाषा", "nav.classes": "कक्षाहरू", "nav.prices": "मूल्य", "nav.studio": "स्टुडियो", "nav.visit": "भ्रमण", "nav.login": "लगइन", "nav.logout": "लगआउट", "nav.book": "बुक गर्नुहोस्", "hero.in": "सास लिनुहोस्", "hero.out": "सास छोड्नुहोस्", "hero.lead": "“Paila” को अर्थ पहिलो हो। पहिलो सास, पहिलो मुद्रा र पहिलो कक्षाका लागि आउनुहोस्।", "hero.cta": "कक्षा बुक गर्नुहोस्", "hero.sub": "पाइलेट्स", "next.today": "अर्को कक्षा: आज {time}", "next.day": "अर्को कक्षा: {day}, {time}", "classes.title": "कक्षाहरू", "classes.lead": "सानो र शान्त स्टुडियोमा रिफर्मर पाइलेट्स।", "classes.reformer.t": "रिफर्मर कक्षा", "classes.reformer.m": "समूह कक्षा", "classes.reformer.b": "स्प्रिङ, स्ट्र्याप र चल्ने क्यारिजको सहायताले सानो समूहमा बल बढाउने अभ्यास।", "classes.check.t": "शारीरिक संरचना चेक-इन", "classes.check.m": "सिग्नेचर, पैला+ र पैला 90 सँग", "classes.check.b": "समयसँगै तपाईंको शरीर कसरी परिवर्तन हुँदैछ भनेर हेर्ने चेक-इन। सिग्नेचर (1), पैला+ (2) र पैला 90 (3) मा समावेश।", "classes.lounge.t": "लाउन्ज र पुस्तकालय", "classes.lounge.m": "समावेश", "classes.lounge.b": "हरेक समूह कक्षा प्याकेजमा कफी वा चिया र लाउन्ज समावेश छ। एसेन्सियल, सिग्नेचर र पैला+ मा पुस्तकालय पनि समावेश छ।", "book.title": "कक्षा बुक गर्नुहोस्", "book.lead": "सत्र र आवश्यक सिट संख्या छान्नुहोस्। प्रत्येक सिट {amt}।", "book.day": "दिन", "book.sessions": "सत्रहरू", "book.spots": "सिट", "book.fewer": "कम सिट", "book.more": "थप सिट", "book.unavailable": "बुकिङ केही समयका लागि उपलब्ध छैन। कृपया केही समयपछि फेरि प्रयास गर्नुहोस्।", "book.noclasses": "अहिले कुनै कक्षा तालिकामा छैन।", "class.reformer": "रिफर्मर", "line": "{cls}, {day}, {time}", "sess.sub": "समूह रिफर्मर कक्षा", "sess.full": "भरिएको", "sess.cancelled": "रद्द गरिएको", "sess.left": "{n} सिट बाँकी", "sess.left.one": "1 सिट बाँकी", "sess.spots": "{n} सिट", "sess.none": "यो दिन थप कक्षा छैन। अर्को दिन छान्नुहोस्।", "qty.left": "यो सत्रमा {n} सिट बाँकी छ।", "qty.left.one": "यो सत्रमा 1 सिट बाँकी छ।", "qty.max": "प्रति बुकिङ बढीमा {n} सिट।", "spots.n": "{n} सिट", "spots.n.one": "1 सिट", "form.name": "नाम", "form.email": "इमेल", "form.pass": "पासवर्ड", "form.reserve": "अहिले बुक गर्नुहोस्", "form.choose": "अगाडि बढ्न सत्र छान्नुहोस्।", "form.summary": "{cls}, {day}, {time}। {spots}, जम्मा {total}।", "form.summaryDisc": "{cls}, {day}, {time}। {spots}, जम्मा {total} (पहिलो कक्षामा {pct}% छुट)।", "form.secure": "भुक्तानी तपाईंको भुक्तानी प्रदायकको आफ्नै सुरक्षित पेजमा हुन्छ।", "form.secureAcct": "तपाईंले लगइन गर्नुहुन्छ वा खाता बनाउनुहुन्छ, अनि भुक्तानी प्रदायकको आफ्नै सुरक्षित पेजमा भुक्तानी गर्नुहुन्छ।", "msg.chooseFirst": "पहिले सत्र छान्नुहोस्।", "msg.full": "यो सत्र भरिएको छ। अर्को समय छान्नुहोस्।", "msg.onlyLeft": "केवल {n} सिट बाँकी छ, त्यसैले तपाईंको छनोट अद्यावधिक गर्‍यौँ।", "msg.onlyLeft.one": "केवल 1 सिट बाँकी छ, त्यसैले तपाईंको छनोट अद्यावधिक गर्‍यौँ।", "msg.name": "आफ्नो नाम लेख्नुहोस्।", "msg.email": "मान्य इमेल ठेगाना लेख्नुहोस्।", "msg.passNew": "पासवर्डमा कम्तीमा 8 अक्षर प्रयोग गर्नुहोस्।", "msg.passEnter": "आफ्नो पासवर्ड लेख्नुहोस्।", "pay.title": "सुरक्षित भुक्तानी", "pay.booking": "बुकिङ", "pay.total": "जम्मा", "pay.note": "तपाईंलाई भुक्तानी प्रदायकको सुरक्षित पेजमा लगिनेछ। Paila ले तपाईंको कार्ड वा वालेटको विवरण कहिल्यै देख्दैन वा राख्दैन।", "pay.go": "सुरक्षित भुक्तानीमा जानुहोस्", "pay.demo": "भुक्तानी नगरी हेर्नुहोस्", "pay.back": "बुकिङ परिवर्तन गर्नुहोस्", "pay.now": "अहिले जानुहोस्", "pay.taking": "तपाईंलाई सुरक्षित भुक्तानीमा लगिँदैछ…", "pay.with": "भुक्तानी विधि", "pay.preview": "भुक्तानी अझै जोडिएको छैन, त्यसैले यो पूर्वावलोकन मात्र हो। कुनै शुल्क लाग्दैन।", "pay.unavailable": "अनलाइन भुक्तानी अझै उपलब्ध छैन। तपाईंको सिट {n} मिनेटसम्म रोकिएको छ। भुक्तानीका लागि कृपया स्टुडियोसँग सम्पर्क गर्नुहोस्।", "pay.line.each": "{spots} × {amt}", "pay.line.disc": "पहिलो कक्षामा {pct}% छुट: −{amt}", "method.card": "कार्ड", "conf.title": "{name}, तपाईंको बुकिङ पक्का भयो।", "conf.arrive": "10 मिनेट अगाडि आउनुहोस् र भए ग्रिप मोजा ल्याउनुहोस्।", "conf.preview": "यो पूर्वावलोकन मात्र थियो, त्यसैले कुनै भुक्तानी लिइएन।", "conf.email": "{email} मा पुष्टि इमेल पठाइँदैछ।", "conf.back": "बुकिङमा फर्कनुहोस्", "mine.title": "तपाईंका बुकिङहरू", "mine.pending": "भुक्तानी पर्खँदै", "mine.confirmed": "पुष्टि भयो", "mine.cancel": "बुकिङ रद्द गर्नुहोस्", "auth.title.login": "जारी राख्न लगइन गर्नुहोस्", "auth.title.register": "आफ्नो खाता बनाउनुहोस्", "auth.sub": "तपाईंका बुकिङहरू तपाईंको खातामा सुरक्षित रहन्छन्।", "auth.tabLogin": "लगइन", "auth.tabRegister": "खाता बनाउनुहोस्", "auth.btnLogin": "लगइन गर्नुहोस्", "auth.btnRegister": "खाता बनाउनुहोस्", "auth.hint": "कम्तीमा 8 अक्षर।", "auth.back": "बुकिङमा फर्कनुहोस्", "auth.note": "तपाईंको पासवर्ड सुरक्षित रूपमा राखिन्छ र हामीलाई कहिल्यै देखिँदैन।", "auth.offer": "खाता बनाउनुहोस् र पहिलो कक्षामा {pct}% छुट पाउनुहोस्।", "auth.relogin": "जारी राख्न कृपया फेरि लगइन गर्नुहोस्।", "auth.welcome": "स्वागत छ, {name}। तपाईं लगइन हुनुभएको छ।", "auth.loggedOut": "तपाईं लगआउट हुनुभयो।", "acct.signed": "{name} को रूपमा लगइन हुनुहुन्छ।", "acct.out": "लगआउट", "offer.visitor": "नयाँ हुनुहुन्छ? खाता बनाउनुहोस् र पहिलो कक्षामा {pct}% छुट पाउनुहोस्।", "offer.user": "तपाईंको पहिलो कक्षामा {pct}% छुट छ।", "ret.thanks": "धन्यवाद। तपाईंको भुक्तानी प्रमाणित हुनासाथ बुकिङ पुष्टि भएको देखिनेछ।", "ret.thanksEmail": "धन्यवाद। तपाईंको भुक्तानी प्रमाणित हुनासाथ बुकिङ पुष्टि भएको देखिनेछ, र हामी तपाईंलाई पुष्टि इमेल पठाउनेछौँ।", "ret.login": "आफ्ना बुकिङहरू हेर्न कृपया लगइन गर्नुहोस्।", "prices.title": "मूल्य", "prices.lead": "अनलाइन प्रति कक्षा बुक र भुक्तानी गर्न सकिन्छ। प्याकेज र सदस्यताका लागि हामीलाई लेख्नुहोस्, हामी व्यवस्था मिलाउनेछौँ।", "tag.new": "नयाँ ग्राहक परीक्षण", "tag.rec": "सिफारिस गरिएको", "feat.classes": "{n} रिफर्मर कक्षा", "feat.classes.one": "1 रिफर्मर कक्षा", "feat.classesWeeks": "{w} हप्तामा {n} रिफर्मर कक्षा", "feat.coffee": "कफी वा चिया", "feat.lounge": "लाउन्ज", "feat.loungeLib": "लाउन्ज र पुस्तकालय", "feat.coffeeLounge": "कफी र लाउन्ज", "feat.retail": "सदस्य रिटेल लाभ", "feat.priority": "प्राथमिकता बुकिङ", "feat.checkin": "{n} शारीरिक संरचना चेक-इन", "feat.checkin.one": "1 शारीरिक संरचना चेक-इन", "feat.guestMat": "1 अतिथि म्याट पास", "feat.progress": "प्रगति छलफल", "feat.socks": "ग्रिप मोजा", "offer.per": "प्रति कक्षा {amt}", "offer.perApprox": "प्रति कक्षा लगभग {amt}", "offer.book": "कक्षा बुक गर्नुहोस्", "offer.enquire": "सोधपुछ गर्नुहोस्", "mail.subject": "Paila: {offer}", "mail.body": "नमस्ते Paila,\n\nम {offer} ({price}) बारे थप जान्न चाहन्छु।\n\nमेरो नाम:\n", "studio.statement": "हामीले स्टुडियोको नाम हरेक कक्षा सुरु हुने तरिकाबाट राख्यौँ: कुनै चाल अघि लिइने एउटा सास, पहिलो पटक लिएझैँ।", "studio.t1": "साना कक्षा", "studio.p1": "हाम्रा रिफर्मर कक्षा साना राखिन्छन्, ताकि प्रशिक्षकले तपाईंको चाल हेर्न सकून्।", "studio.t2": "बिस्तारै प्रगति", "studio.p2": "हामी तीव्रताभन्दा पहिले शुद्धता सिकाउँछौँ। चाल सफा भएपछि बल आफैँ आउँछ।", "studio.t3": "नयाँ हुनु सामान्य हो", "studio.p3": "सबैको एउटा पहिलो कक्षा हुन्छ। 10 मिनेट अगाडि आउनुहोस्, बाँकी हामी सम्हाल्छौँ।", "visit.title": "हामीलाई भेट्नुहोस्", "visit.where": "हामी जावलाखेल पार्क, ललितपुरको जेके सेन्ट्रल भवनको तेस्रो तलामा छौँ।", "visit.hours": "सोमबारदेखि शुक्रबार बिहान 7:30, शनिबार बिहान 9:00 र आइतबार बिहान 10:00 बजे कक्षा सुरु हुन्छ।", "visit.google": "Google Maps मा खोल्नुहोस्", "visit.apple": "Apple Maps मा खोल्नुहोस्", "visit.mapAria": "जावलाखेलको चित्रित हवाई दृश्य, स्टुडियो चिन्ह लगाइएको र पश्चिममा केन्द्रीय चिडियाखाना", "visit.mapNote": "जावलाखेलको चित्रित हवाई दृश्य, पश्चिममा केन्द्रीय चिडियाखानासहित। सडकहरू शैलीकृत छन्; बटनहरूले प्रत्यक्ष स्याटेलाइट नक्सा खोल्छन्।", "visit.liveNote": "प्रत्यक्ष स्याटेलाइट नक्सा। दिशाका लागि बटन प्रयोग गर्नुहोस्।", "visit.liveTitle": "स्टुडियोको स्थान देखाउने प्रत्यक्ष स्याटेलाइट नक्सा", "foot.tag": "साना समूहमा रिफर्मर पाइलेट्स।", "foot.visit": "भ्रमण", "foot.hello": "सम्पर्क गर्नुहोस्", "err.blocked": "अनुरोध रोकियो।", "err.content_type": "असमर्थित सामग्री प्रकार।", "err.rate_limited": "धेरै पटक प्रयास भयो। कृपया केही समयपछि फेरि प्रयास गर्नुहोस्।", "err.invalid_request": "अमान्य अनुरोध।", "err.password_length": "8 देखि 128 अक्षरको पासवर्ड प्रयोग गर्नुहोस्।", "err.email_taken": "यो इमेलको खाता पहिले नै छ। बरु लगइन गर्नुहोस्।", "err.bad_login": "इमेल वा पासवर्ड मिलेन।", "err.login_required": "जारी राख्न कृपया लगइन गर्नुहोस्।", "err.qty_range": "1 देखि {n} सिटसम्म छान्नुहोस्।", "err.session_gone": "यो सत्र अब उपलब्ध छैन।", "err.session_cancelled": "यो कक्षा रद्द गरिएको छ।", "err.session_full": "यो सत्र भरिएको छ।", "err.qty_over": "केवल {n} सिट बाँकी छ।", "err.too_many_unpaid": "तपाईंका धेरै भुक्तानी नभएका बुकिङ छन्। कृपया पहिले एउटा भुक्तानी वा रद्द गर्नुहोस्।", "err.not_found": "बुकिङ फेला परेन।", "err.paid_contact": "यो बुकिङको भुक्तानी भइसकेको छ। परिवर्तनका लागि कृपया स्टुडियोसँग सम्पर्क गर्नुहोस्।", "err.expired": "यो बुकिङको समय सकियो। कृपया फेरि बुक गर्नुहोस्।", "err.server_error": "केही गडबड भयो। कृपया फेरि प्रयास गर्नुहोस्।"}};
+  var lang = 'en';
+  try {
+    var saved = localStorage.getItem('paila.lang');
+    if (saved === 'en' || saved === 'ne') lang = saved;
+    else if (/^ne/i.test(navigator.language || '')) lang = 'ne';
+  } catch (e) {
+    if (/^ne/i.test(navigator.language || '')) lang = 'ne';
+  }
+
+  function has(key) { return (I18N[lang] && I18N[lang][key] !== undefined) || I18N.en[key] !== undefined; }
+  function t(key, vars) {
+    var s = I18N[lang] && I18N[lang][key];
+    if (s === undefined) s = I18N.en[key];
+    if (s === undefined) return key;
+    return vars ? s.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] !== undefined ? vars[k] : m; }) : s;
+  }
+  function tn(key, n, vars) {
+    var k = (n === 1 && has(key + '.one')) ? key + '.one' : key;
+    var v = { n: n };
+    if (vars) for (var p in vars) v[p] = vars[p];
+    return t(k, v);
+  }
+  function LOC() { return lang === 'ne' ? 'ne-NP-u-nu-latn' : undefined; }
+  function money(n) { return (lang === 'ne' ? '\u0930\u0941 ' : 'NPR ') + Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 }); }
+  // Date and time text. Nepali names are written out here so they look right on every device.
+  var NE_WD = ['आइतबार', 'सोमबार', 'मङ्गलबार', 'बुधबार', 'बिहीबार', 'शुक्रबार', 'शनिबार'];
+  var NE_WD_S = ['आइत', 'सोम', 'मङ्गल', 'बुध', 'बिही', 'शुक्र', 'शनि'];
+  var NE_MO = ['जनवरी', 'फेब्रुअरी', 'मार्च', 'अप्रिल', 'मे', 'जुन', 'जुलाई', 'अगस्ट', 'सेप्टेम्बर', 'अक्टोबर', 'नोभेम्बर', 'डिसेम्बर'];
+  var NE_MO_S = ['जन', 'फेब्रु', 'मार्च', 'अप्रिल', 'मे', 'जुन', 'जुलाई', 'अग', 'सेप्टे', 'अक्टो', 'नोभे', 'डिसे'];
+  var EN_WD = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  // Calendar and clock parts of a moment, in a given time zone (default: the visitor's own)
+  function parts(d, tz) {
+    var o = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' };
+    if (tz) o.timeZone = tz;
+    var p = {};
+    new Intl.DateTimeFormat('en-US', o).formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+    return { wd: EN_WD[p.weekday], day: Number(p.day), mo: Number(p.month) - 1, h: Number(p.hour) % 24, m: Number(p.minute) };
+  }
+  function dayLong(d, tz) {
+    if (lang !== 'ne') return d.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long', timeZone: tz });
+    var p = parts(d, tz); return NE_WD[p.wd] + ', ' + p.day + ' ' + NE_MO[p.mo];
+  }
+  function dayShort(d, tz) {
+    if (lang !== 'ne') return d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short', timeZone: tz });
+    var p = parts(d, tz); return NE_WD_S[p.wd] + ', ' + p.day + ' ' + NE_MO_S[p.mo];
+  }
+  function weekdayLong(d, tz) {
+    if (lang !== 'ne') return d.toLocaleDateString(undefined, { weekday: 'long', timeZone: tz });
+    return NE_WD[parts(d, tz).wd];
+  }
+  function weekdayShort(d, tz) {
+    if (lang !== 'ne') return d.toLocaleDateString(undefined, { weekday: 'short', timeZone: tz });
+    return NE_WD_S[parts(d, tz).wd];
+  }
+  function timeText(d, tz) {
+    if (lang !== 'ne') return d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZone: tz });
+    var p = parts(d, tz), h12 = p.h % 12 === 0 ? 12 : p.h % 12;
+    var word = p.h >= 4 && p.h < 12 ? 'बिहान' : p.h >= 12 && p.h < 16 ? 'दिउँसो' : p.h >= 16 && p.h < 19 ? 'साँझ' : 'राति';
+    return word + ' ' + h12 + ':' + String(p.m).padStart(2, '0');
+  }
+
+  function clsName(cid) { return has('class.' + cid) ? t('class.' + cid) : cid; }
+  function lineOf(cid, dayText, timeText) { return t('line', { cls: clsName(cid), day: dayText, time: timeText }); }
+
+  var hooks = [];
+  function onLang(fn) { hooks.push(fn); }
+
+  function applyStatic() {
+    document.documentElement.lang = lang;
+    document.title = t('meta.title');
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', t('meta.desc'));
+    each('[data-i18n]', function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
+    each('[data-i18n-aria]', function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
+    each('[data-i18n-title]', function (el) { el.setAttribute('title', t(el.getAttribute('data-i18n-title'))); });
+    var lead = $('#bookLead');
+    if (lead) lead.textContent = t('book.lead', { amt: money(priceNow) });
+    each('.lang button', function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+    var lines = STUDIO.address[lang] || STUDIO.address.en;
+    var addr = $('#addr');
+    addr.textContent = '';
+    lines.forEach(function (line) {
+      var span = document.createElement('span');
+      span.textContent = line;
+      addr.appendChild(span);
+    });
+    $('#footAddr').textContent = lines.join(', ');
+  }
+
+  function featText(f, o) {
+    var p = f.split(':'), k = p[0], n = p[1] ? Number(p[1]) : 0;
+    if (k === 'classes') return o.weeks ? t('feat.classesWeeks', { n: o.classes, w: o.weeks }) : tn('feat.classes', o.classes);
+    if (k === 'checkin') return tn('feat.checkin', n);
+    return t('feat.' + k);
+  }
+  function mailtoFor(o) {
+    return 'mailto:' + STUDIO.email +
+      '?subject=' + encodeURIComponent(t('mail.subject', { offer: o.name })) +
+      '&body=' + encodeURIComponent(t('mail.body', { offer: o.name, price: money(o.price) }));
+  }
+  function renderOffers() {
+    var box = $('#offers');
+    if (!box) return;
+    box.innerHTML = OFFERS.map(function (o) {
+      var items = o.features.map(function (f) { return '<li>' + esc(featText(f, o)) + '</li>'; }).join('');
+      var tag = o.newClients ? '<span class="tag">' + esc(t('tag.new')) + '</span>'
+        : (o.star ? '<span class="tag">' + esc(t('tag.rec')) + '</span>' : '');
+      var per = o.approx ? t('offer.perApprox', { amt: money(o.per) }) : t('offer.per', { amt: money(o.per) });
+      var cls = 'btn small' + (o.star ? '' : ' ghost');
+      var action = o.id === 'drop-in'
+        ? '<a class="' + cls + '" href="#book">' + esc(t('offer.book')) + '</a>'
+        : '<a class="' + cls + '" href="' + esc(mailtoFor(o)) + '">' + esc(t('offer.enquire')) + '</a>';
+      return '<article class="offer' + (o.star ? ' star' : '') + '"><div class="offer-main"><h3>' + esc(o.name) + tag + '</h3><ul>' + items + '</ul></div>' +
+        '<div class="offer-price"><span class="amount">' + esc(money(o.price)) + '</span><span class="per">' + esc(per) + '</span>' + action + '</div></article>';
+    }).join('');
+  }
+
+  function setLang(l) {
+    lang = l;
+    try { localStorage.setItem('paila.lang', l); } catch (e) {}
+    applyStatic();
+    renderOffers();
+    hooks.forEach(function (fn) { fn(); });
+  }
+  each('.lang button', function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+  });
+
+  // ---------- Studio location ----------
+  (function () {
+    var hasCoords = typeof STUDIO.lat === 'number' && typeof STUDIO.lng === 'number';
+    var q = hasCoords ? STUDIO.lat + ',' + STUDIO.lng : STUDIO.address.en.join(', ');
+    $('#gmaps').href = hasCoords
+      ? 'https://www.google.com/maps/@?api=1&map_action=map&center=' + STUDIO.lat + ',' + STUDIO.lng + '&zoom=19&basemap=satellite'
+      : 'https://www.google.com/maps?q=' + encodeURIComponent(q) + '&t=k';
+    $('#amaps').href = hasCoords
+      ? 'https://maps.apple.com/?ll=' + STUDIO.lat + ',' + STUDIO.lng + '&q=' + encodeURIComponent(STUDIO.name) + '&t=k'
+      : 'https://maps.apple.com/?q=' + encodeURIComponent(q) + '&t=k';
+    var live = $('#liveMap');
+    if (live) {
+      live.src = hasCoords
+        ? 'https://www.google.com/maps?q=' + STUDIO.lat + ',' + STUDIO.lng + '&t=k&z=19&output=embed'
+        : 'https://www.google.com/maps?q=' + encodeURIComponent(q) + '&t=k&z=19&output=embed';
+    }
+  })();
+
+  applyStatic();
+  renderOffers();
+
+  // ---------- Server-backed booking with accounts ----------
+  var cfg = null, user = null, days = [], todayStr = '', mine = [];
+  var state = { dayKey: null, sessionId: null, qty: 1 };
+  var pending = null, autoTimer = null, authMode = 'login', wantsReserve = false, redraw = null;
+  var embedded = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+
+  function api(path, opts) {
+    opts = opts || {};
+    var init = { method: opts.method || 'GET', credentials: 'same-origin', headers: {} };
+    if (opts.body !== undefined) {
+      init.method = opts.method || 'POST';
+      init.headers['Content-Type'] = 'application/json';
+      init.body = JSON.stringify(opts.body);
+    } else if (init.method === 'POST') {
+      init.headers['Content-Type'] = 'application/json';
+      init.body = '{}';
+    }
+    return fetch('/api' + path, init).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (data) {
+        if (!r.ok) {
+          var err = new Error(data.error || 'Something went wrong. Please try again.');
+          err.status = r.status; err.code = data.code; err.n = data.n;
+          throw err;
+        }
+        return data;
+      });
+    });
+  }
+  // Show a server error in the visitor's language when we have a translation for it
+  function errText(err) {
+    if (err && err.code) {
+      var key = err.code === 'name_required' ? 'msg.name' : err.code === 'email_invalid' ? 'msg.email' : 'err.' + err.code;
+      if (has(key)) return tn(key, err.n !== undefined ? err.n : 0, { n: err.n });
+    }
+    return err.message;
+  }
+
+  function spots(n) { return tn('spots.n', n); }
+  function firstName(n) { return String(n || '').trim().split(/\s+/)[0]; }
+  function roundMoney(n) { return Math.round(n * 100) / 100; }
+  function pct() { return Math.round((cfg.firstClassDiscount || 0) * 100); }
+  function discountNow() { return user && user.firstClassOffer ? roundMoney(cfg.price * cfg.firstClassDiscount) : 0; }
+  function totalFor(q) { return roundMoney(q * cfg.price - discountNow()); }
+  function noon(ds) { return new Date(ds + 'T12:00:00Z'); }
+  function fmtTime(iso) { return timeText(new Date(iso), cfg.timezone); }
+  function fmtShortIso(iso) { return dayShort(new Date(iso), cfg.timezone); }
+  function fmtLongIso(iso) { return dayLong(new Date(iso), cfg.timezone); }
+  function bookingLine(b) { return lineOf(b.cid, fmtShortIso(b.start), fmtTime(b.start)); }
+
+  function dayByKey(k) { return days.filter(function (d) { return d.date === k; })[0] || days[0]; }
+  function currentSession() {
+    var d = dayByKey(state.dayKey);
+    return d.sessions.filter(function (s) { return s.id === state.sessionId; })[0] || null;
+  }
+  function maxQty(s) { return Math.max(1, Math.min(s.left, cfg.maxSpots)); }
+  function setFlash(text) { var f = $('#flash'); f.textContent = text || ''; f.hidden = !text; }
+  function msg(text, el) { $('#formMsg').textContent = text || ''; if (el) el.focus(); }
+  function amsg(text, el) { $('#authMsg').textContent = text || ''; if (el) el.focus(); }
+
+  // ---------- Loading ----------
+  function loadSessions() {
+    return api('/sessions').then(function (d) {
+      days = d.days.slice(0, 7);
+      todayStr = d.today;
+      if (days.length && !days.some(function (x) { return x.date === state.dayKey; })) { state.dayKey = days[0].date; state.sessionId = null; }
+    });
+  }
+  function loadMine() {
+    if (!user) { mine = []; return Promise.resolve(); }
+    return api('/bookings').then(function (d) { mine = d.bookings; }).catch(function () { mine = []; });
+  }
+  function loadMe() {
+    if (!user) return Promise.resolve();
+    return api('/me').then(function (d) { user = d.user; }).catch(function () {});
+  }
+  function refresh() { return Promise.all([loadSessions(), loadMine(), loadMe()]).then(render); }
+
+  // ---------- Rendering ----------
+  function render() {
+    renderAccount();
+    renderDays();
+    renderSessions();
+    renderQty();
+    updateSummary();
+    renderMine();
+    setNext();
+  }
+
+  function renderAccount() {
+    var note = $('#offerNote');
+    if (cfg && cfg.firstClassDiscount > 0 && (!user || user.firstClassOffer)) {
+      note.textContent = t(user ? 'offer.user' : 'offer.visitor', { pct: pct() });
+      note.hidden = false;
+    } else { note.hidden = true; }
+    $('#navLogin').textContent = t(user ? 'nav.logout' : 'nav.login');
+    $('#acct').hidden = !user;
+    if (user) $('#acctName').textContent = t('acct.signed', { name: user.name });
+  }
+
+  function renderDays() {
+    $('#dayGroup').innerHTML = days.map(function (d) {
+      return '<label class="day"><input type="radio" name="day" value="' + d.date + '"' + (d.date === state.dayKey ? ' checked' : '') + '>' +
+        '<span class="dow">' + esc(weekdayShort(noon(d.date), 'UTC')) + '</span>' +
+        '<span class="dnum">' + Number(d.date.slice(8)) + '</span></label>';
+    }).join('');
+  }
+
+  function renderSessions() {
+    var d = dayByKey(state.dayKey);
+    $('#sessionLegend').textContent = dayLong(noon(d.date), 'UTC');
+    $('#sessionList').innerHTML = d.sessions.map(function (s) {
+      var full = s.left <= 0;
+      var label = s.cancelled ? t('sess.cancelled') : full ? t('sess.full') : (s.left <= 3 ? tn('sess.left', s.left) : tn('sess.spots', s.left));
+      return '<label class="session"><input type="radio" name="session" value="' + s.id + '"' +
+        (s.id === state.sessionId ? ' checked' : '') + (full ? ' disabled' : '') + '>' +
+        '<span class="time">' + esc(fmtTime(s.start)) + '</span>' +
+        '<span class="what"><strong>' + esc(clsName(s.cid)) + '</strong><small>' + esc(t('sess.sub')) + '</small></span>' +
+        '<span class="spots">' + esc(label) + '</span><span class="dot" aria-hidden="true"></span></label>';
+    }).join('');
+  }
+
+  function renderQty() {
+    var s = currentSession(), group = $('#qtyGroup');
+    group.hidden = !s;
+    if (!s) return;
+    var max = maxQty(s);
+    if (state.qty > max) state.qty = max;
+    if (state.qty < 1) state.qty = 1;
+    $('#qtyOut').textContent = state.qty;
+    $('#qtyMinus').disabled = state.qty <= 1;
+    $('#qtyPlus').disabled = state.qty >= max;
+    $('#qtyHint').textContent = max === s.left ? tn('qty.left', s.left) : t('qty.max', { n: max });
+  }
+
+  function summaryText(s) {
+    return t(discountNow() ? 'form.summaryDisc' : 'form.summary', {
+      cls: clsName(s.cid), day: fmtLongIso(s.start), time: fmtTime(s.start),
+      spots: spots(state.qty), total: money(totalFor(state.qty)), pct: pct()
+    });
+  }
+  function updateSummary() {
+    var s = currentSession(), el = $('#summary');
+    if (s) { el.textContent = summaryText(s); el.className = 'ready'; }
+    else { el.textContent = t('form.choose'); el.className = ''; }
+  }
+
+  function renderMine() {
+    var box = $('#mine');
+    if (!user || !mine.length) { box.hidden = true; $('#mineList').innerHTML = ''; return; }
+    box.hidden = false;
+    $('#mineList').innerHTML = mine.map(function (b) {
+      var status = '<small>' + esc(t(b.status === 'paid' ? 'mine.confirmed' : 'mine.pending')) + '</small>';
+      var action = b.status === 'pending'
+        ? '<button class="text-btn" type="button" data-cancel="' + b.id + '">' + esc(t('mine.cancel')) + '</button>'
+        : '<span></span>';
+      return '<li><span>' + esc(bookingLine(b) + ', ' + spots(b.qty)) + status + '</span>' + action + '</li>';
+    }).join('');
+  }
+
+  // ---------- Panels ----------
+  function hidePanels() {
+    clearAuto();
+    redraw = null;
+    $('#bookForm').hidden = true;
+    $('#auth').hidden = true;
+    $('#payment').hidden = true;
+    $('#confirm').hidden = true;
+  }
+  function showForm() {
+    hidePanels();
+    $('#bookForm').hidden = false;
+    return refresh();
+  }
+  var confirmData = null;
+  function drawConfirm() {
+    var c = confirmData;
+    if (!c) return;
+    $('#confirmTitle').textContent = t('conf.title', { name: firstName(c.name) });
+    $('#confirmList').innerHTML = c.items.map(function (b) { return '<li>' + esc(bookingLine(b) + ', ' + spots(b.qty)) + '</li>'; }).join('');
+    $('#confirmText').textContent = c.text();
+  }
+  function showConfirm(c) {
+    hidePanels();
+    confirmData = c;
+    $('#confirm').hidden = false;
+    drawConfirm();
+    redraw = drawConfirm;
+    $('#confirmTitle').focus();
+  }
+
+  // ---------- Account ----------
+  function setAuthMode(mode) {
+    authMode = mode;
+    var reg = mode === 'register';
+    $('#tabLogin').setAttribute('aria-pressed', String(!reg));
+    $('#tabRegister').setAttribute('aria-pressed', String(reg));
+    $('#nameField').hidden = !reg;
+    $('#passHint').hidden = !reg;
+    $('#authBtn').textContent = t(reg ? 'auth.btnRegister' : 'auth.btnLogin');
+    $('#authTitle').textContent = t(reg ? 'auth.title.register' : 'auth.title.login');
+    $('#apass').setAttribute('autocomplete', reg ? 'new-password' : 'current-password');
+    var offer = $('#offerReg');
+    offer.textContent = t('auth.offer', { pct: pct() });
+    offer.hidden = !(reg && cfg && cfg.firstClassDiscount > 0);
+    var s = currentSession();
+    $('#authSummary').textContent = s && wantsReserve ? summaryText(s) : t('auth.sub');
+  }
+  function showAuth(mode) {
+    hidePanels();
+    setAuthMode(mode || authMode);
+    amsg('');
+    $('#auth').hidden = false;
+    redraw = function () { setAuthMode(authMode); };
+    $('#authTitle').focus();
+  }
+  $('#tabLogin').addEventListener('click', function () { setAuthMode('login'); amsg(''); });
+  $('#tabRegister').addEventListener('click', function () { setAuthMode('register'); amsg(''); });
+  $('#authBack').addEventListener('click', function () { wantsReserve = false; showForm(); });
+
+  $('#authForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var reg = authMode === 'register';
+    var name = $('#aname').value.trim(), email = $('#aemail').value.trim(), pass = $('#apass').value;
+    if (reg && !name) { amsg(t('msg.name'), $('#aname')); return; }
+    if (!/^\S+@\S+\.\S+$/.test(email)) { amsg(t('msg.email'), $('#aemail')); return; }
+    if (reg ? pass.length < 8 : !pass) { amsg(t(reg ? 'msg.passNew' : 'msg.passEnter'), $('#apass')); return; }
+    var btn = $('#authBtn');
+    btn.disabled = true;
+    amsg('');
+    api(reg ? '/register' : '/login', { body: reg ? { name: name, email: email, password: pass } : { email: email, password: pass } })
+      .then(function (r) {
+        user = r.user;
+        renderAccount();
+        $('#apass').value = '';
+        btn.disabled = false;
+        if (wantsReserve && currentSession()) { wantsReserve = false; startBooking(); }
+        else { wantsReserve = false; showForm().then(function () { setFlash(t('auth.welcome', { name: firstName(user.name) })); }); }
+      })
+      .catch(function (err) { btn.disabled = false; amsg(errText(err)); });
+  });
+
+  function logout() {
+    api('/logout', { method: 'POST' }).catch(function () {}).then(function () {
+      user = null; mine = []; pending = null;
+      showForm().then(function () { setFlash(t('auth.loggedOut')); });
+    });
+  }
+  $('#acctOut').addEventListener('click', logout);
+  $('#navLogin').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (user) { logout(); return; }
+    wantsReserve = false;
+    showAuth('login');
+    $('#book').scrollIntoView();
+  });
+
+  // ---------- Booking and payment ----------
+  function clearAuto() { if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; } }
+  function goPay(url) {
+    if (embedded) { window.open(url, '_blank', 'noopener'); } else { window.location.assign(url); }
+  }
+  function methodLabel(m) { return has('method.' + m.id) ? t('method.' + m.id) : m.label; }
+
+  function startBooking() {
+    var s = currentSession();
+    if (!s) { showForm(); return; }
+    var btn = $('#submitBtn');
+    btn.disabled = true;
+    api('/bookings', { body: { sid: s.id, qty: state.qty, lang: lang } })
+      .then(function (res) {
+        btn.disabled = false;
+        pending = res;
+        showPayment(res);
+        loadSessions().then(loadMine);
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        if (err.status === 401) { user = null; wantsReserve = true; showAuth('login'); amsg(t('auth.relogin')); return; }
+        showForm().then(function () { msg(errText(err)); });
+      });
+  }
+
+  function drawPayment() {
+    var res = pending;
+    if (!res) return;
+    var b = res.booking;
+    $('#payWhat').innerHTML = '<span class="line">' + esc(lineOf(b.cid, fmtLongIso(b.start), fmtTime(b.start))) + '</span>' +
+      '<span class="line">' + esc(t('pay.line.each', { spots: spots(b.qty), amt: money(cfg.price) })) + '</span>' +
+      (b.discount > 0 ? '<span class="line">' + esc(t('pay.line.disc', { pct: pct(), amt: money(b.discount) })) + '</span>' : '');
+    $('#payTotal').textContent = money(b.amount);
+    var ms = res.checkout || [], box = $('#payMethods'), go = $('#payGo'), demo = $('#payDemo'), msgEl = $('#payMsg');
+    msgEl.textContent = '';
+    go.textContent = t('pay.go');
+    demo.hidden = !res.demo;
+    if (!ms.length) {
+      box.hidden = true;
+      go.hidden = true;
+      msgEl.textContent = res.demo ? t('pay.preview') : t('pay.unavailable', { n: res.holdMinutes });
+      return;
+    }
+    go.hidden = false;
+    if (ms.length > 1) {
+      var chosen = document.querySelector('input[name="method"]:checked');
+      var keep = chosen ? chosen.value : ms[0].id;
+      box.hidden = false;
+      box.innerHTML = '<legend>' + esc(t('pay.with')) + '</legend><div class="methods">' + ms.map(function (m) {
+        return '<label class="method"><input type="radio" name="method" value="' + m.id + '"' + (m.id === keep ? ' checked' : '') + '><span>' + esc(methodLabel(m)) + '</span></label>';
+      }).join('') + '</div>';
+    } else {
+      box.hidden = true;
+      box.innerHTML = '';
+      if (!embedded) { go.textContent = t('pay.now'); msgEl.textContent = t('pay.taking'); }
+    }
+  }
+  function showPayment(res) {
+    hidePanels();
+    $('#payment').hidden = false;
+    drawPayment();
+    redraw = drawPayment;
+    var ms = res.checkout || [];
+    if (ms.length === 1 && !embedded) autoTimer = setTimeout(function () { goPay(ms[0].url); }, 1800);
+    $('#payTitle').focus();
+  }
+
+  $('#payGo').addEventListener('click', function () {
+    if (!pending) return;
+    var ms = pending.checkout || [];
+    var chosen = document.querySelector('input[name="method"]:checked');
+    var m = ms.filter(function (x) { return chosen && x.id === chosen.value; })[0] || ms[0];
+    if (!m) return;
+    clearAuto();
+    goPay(m.url);
+  });
+  $('#payDemo').addEventListener('click', function () {
+    if (!pending) return;
+    var b = pending.booking;
+    api('/bookings/' + b.id + '/demo-pay', { method: 'POST' })
+      .then(function (r) {
+        pending = null;
+        showConfirm({
+          name: user.name,
+          items: [r.booking],
+          text: function () { return t('conf.preview') + (cfg.emailEnabled ? ' ' + t('conf.email', { email: user.email }) : ''); }
+        });
+        refresh();
+      })
+      .catch(function (err) { $('#payMsg').textContent = errText(err); });
+  });
+  $('#payBack').addEventListener('click', function () {
+    clearAuto();
+    var b = pending && pending.booking;
+    pending = null;
+    (b ? api('/bookings/' + b.id + '/cancel', { method: 'POST' }).catch(function () {}) : Promise.resolve()).then(showForm);
+  });
+  $('#another').addEventListener('click', function () {
+    state.sessionId = null; state.qty = 1;
+    showForm();
+    $('#book').scrollIntoView();
+  });
+
+  // Returning from the payment provider (success link ends with #paid)
+  function handleReturn() {
+    if (!/^#paid/.test(location.hash) && !/[?&]paid(=|&|$)/.test(location.search)) return;
+    try { history.replaceState(null, '', location.pathname); } catch (e) {}
+    showForm().then(function () {
+      setFlash(user ? t(cfg.emailEnabled ? 'ret.thanksEmail' : 'ret.thanks') : t('ret.login'));
+      $('#book').scrollIntoView();
+    });
+  }
+
+  // ---------- Events ----------
+  $('#dayGroup').addEventListener('change', function (e) {
+    if (e.target.name !== 'day') return;
+    state.dayKey = e.target.value; state.sessionId = null; state.qty = 1;
+    msg('');
+    renderSessions(); renderQty(); updateSummary();
+  });
+  $('#sessionList').addEventListener('change', function (e) {
+    if (e.target.name !== 'session') return;
+    state.sessionId = e.target.value; state.qty = 1;
+    msg('');
+    renderQty(); updateSummary();
+  });
+  $('#qtyMinus').addEventListener('click', function () {
+    if (state.qty > 1) { state.qty--; renderQty(); updateSummary(); }
+  });
+  $('#qtyPlus').addEventListener('click', function () {
+    var s = currentSession();
+    if (s && state.qty < maxQty(s)) { state.qty++; renderQty(); updateSummary(); }
+  });
+
+  // Reserve now: log in or create an account first, then go to payment
+  $('#details').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var s = currentSession();
+    if (!s) { msg(t('msg.chooseFirst')); return; }
+    if (s.left <= 0) { msg(t('msg.full')); return; }
+    if (state.qty > s.left) {
+      state.qty = s.left; renderQty(); updateSummary();
+      msg(tn('msg.onlyLeft', s.left));
+      return;
+    }
+    if (!user) { wantsReserve = true; showAuth('login'); return; }
+    startBooking();
+  });
+
+  $('#mineList').addEventListener('click', function (e) {
+    var id = e.target.getAttribute && e.target.getAttribute('data-cancel');
+    if (!id) return;
+    api('/bookings/' + id + '/cancel', { method: 'POST' }).catch(function () {}).then(refresh);
+  });
+
+  // Next available class link in the hero
+  function setNext() {
+    var link = $('#nextClass');
+    for (var i = 0; i < days.length; i++) {
+      var s = days[i].sessions.filter(function (x) { return x.left > 0; })[0];
+      if (s) {
+        link.textContent = days[i].date === todayStr
+          ? t('next.today', { time: fmtTime(s.start) })
+          : t('next.day', { day: weekdayLong(noon(days[i].date), 'UTC'), time: fmtTime(s.start) });
+        link.setAttribute('data-day', days[i].date);
+        link.setAttribute('data-session', s.id);
+        link.hidden = false;
+        return;
+      }
+    }
+  }
+  $('#nextClass').addEventListener('click', function () {
+    state.dayKey = this.getAttribute('data-day');
+    state.sessionId = this.getAttribute('data-session');
+    state.qty = 1;
+    showForm();
+  });
+
+  // Re-draw everything when the language changes
+  onLang(function () {
+    if (!cfg) return;
+    render();
+    if (redraw) redraw();
+  });
+
+  // ---------- Start ----------
+  var nav = $('#navLogin');
+  nav.removeAttribute('target');
+  nav.hidden = false;
+
+  Promise.all([api('/config'), api('/me')])
+    .then(function (res) {
+      cfg = res[0];
+      user = res[1].user;
+      priceNow = cfg.price;
+      OFFERS.forEach(function (o) { if (o.id === 'drop-in') { o.price = cfg.price; o.per = cfg.price; } });
+      applyStatic();
+      renderOffers();
+      return loadSessions().then(loadMine);
+    })
+    .then(function () {
+      if (!days.length) { $('#bookForm').innerHTML = '<p class="empty">' + esc(t('book.noclasses')) + '</p>'; return; }
+      state.dayKey = days[0].date;
+      render();
+      handleReturn();
+    })
+    .catch(function () {
+      var local = location.protocol === 'file:' || location.hostname === '';
+      $('#bookForm').innerHTML = local
+        ? '<p class="empty">Booking needs the Paila server. Start it with <b>node server.js</b>, then open <b>http://localhost:3000</b> instead of opening this file directly.</p>'
+        : '<p class="empty">' + esc(t('book.unavailable')) + '</p>';
+    });
+})();
+</script>
+</body>
+</html>
